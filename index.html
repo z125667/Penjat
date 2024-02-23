@@ -10,52 +10,53 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <script>
-            
-         var vides = 7
-      function comprova(){
-          
-     if ((document.getElementById("valor").value >= "a") && (document.getElementById("valor").value <= "1"))    {
-         
-    document.getElementById("lletres").innerHTML =document.getElementById("valor").value;  
-    
-                 alert ("Has encertat!!") ;}
-     else {
-         alert ("Has fallat!");
-
-                        vides = vides - 1;
-
-                        document.getElementById("vides").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + vides;
-                    }
-
-                }
-    
-            
-        </script>
+        <link rel="stylesheet" href="css/penjat.css">
+        <script src="newjavascript.js">       </script>
         
     </head>
-    <body>
+    
  
         <div><b>Prototip JOC Penjat</b></div>
-        <body style="background-color:#CACDCC">
+<body style="background-image: url('img/Castle2.png'); background-size: 640px 480px; background-repeat: no-repeat">
          
             
-        <input type="text" placeholder="Escriu en minuscules" id="valor">  <button onclick="comprova();">Verificar</button>
-            <h2>Paraula</h2>
+        <input type="text" placeholder="Escriu en minuscules" id="valor">  <button onclick="Comprovar();">Verificar</button>
+            <h2 style="color: white;">Paraula</h2>
              
+            <p style="color: white;" id="bones"> _ _ _ _ _ _ _ </p>
             
-            <h2>Vides</h2>
+            <h2 style="color: white;"> Vides</h2>
             
-            <p id="vides">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7</p>
+            <p style="color: white;" id="vides">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7</p>
             
-            <h2>------</h2>
+            <h2 style="color: white;">------</h2>
             
-            <p id="lletres"> _ _ _ _ _ _ _ </p>
+            <p style="color: white;" id="dolentes"> _ _ _ _ _ _ _ </p>
             
             
              
             <div>
             
+            <div/>
+            
+    <div>
+                
+        <img src="../../joc del colgat/public_html/ahorcado_6.png" alt="" id="ahorcado_6" style="width:280px;heitht:270px;" title="Et queden 6 vides!">
+          
+          <img src="../../joc del colgat/public_html/ahorcado_5.png" alt="" id="ahorcado_5" style="width:280px;heitht:270px;" title="Et queden 5 vides!">
+          
+          <img src="../../joc del colgat/public_html/ahorcado_4.png" alt="" id="ahorcado_4" style="width:280px;heitht:270px;" title="Et queden 4 vides!">
+          
+          <img src="../../joc del colgat/public_html/ahorcado_3.png" alt="" id="ahorcado_3" style="width:280px;heitht:270px;" title="Et queden 3 vides!">
+          
+          <img src="../../joc del colgat/public_html/ahorcado_2.png" alt="" id="ahorcado_2" style="width:280px;heitht:270px;" title="Et queden 2 vides!">
+          
+          <img src="../../joc del colgat/public_html/ahorcado_1.png" alt="" id="ahorcado_1" style="width:280px;heitht:270px;" title="Et queden 1 vida!">
+          
+          <img src="../../joc del colgat/public_html/ahorcado_0.png" alt="" id="ahorcado_0" style="width:280px;heitht:270px;" title="has mort bastard!">
+          
+    <div/>
+                
     </body>
     
 </html>
