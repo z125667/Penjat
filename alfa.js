@@ -3,8 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+var Paraula = [];
+var Lletres = ["_", "_", "_", "_", "_", "_", "_", ]
 var vides = 7
+
+var paraules = ["cordes", "fetge", "forca", "juges",
+    "jutgat", "mengen", "penjat", "quinta", "setze"]    
          
+var pistes = ["A la quinta forca", "A ca un penjat, no hi anomenis cordes",
+    "Setze jutges d'un jutjat mengen fetge a un penjat"]         
+         
+ var paraulespistes = [1, 2, 0, 2, 2, 2, 1, 0, 2];     
+
+//Escull una paraula aleatoriament.
+
       function Comprovar(){
        lletra = document.getElementById("valor").value;
        document.getElementById("valor").value = "";
@@ -39,12 +51,16 @@ var vides = 7
         alert("Has encertat!!");
         bones = document.getElementById("bones").innerHTML;
         bones = bones + lletra + " ";
-          document.getElementById("bones").innerHTML = bones;
+        document.getElementById("bones").innerHTML = bones;
+        alert("CHEER"); 
+        document.getElementById("miau").play();
     }
      else {
          alert("Has fallat!");
+         alert("VID3S");
          vides = vides - 1;
          document.getElementById("vides").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + vides;
+           document.getElementById("mystery").play();
         MostraImg();
         dolentes = document.getElementById("dolentes").innerHTML;
         if (dolentes == ""){
@@ -131,10 +147,3 @@ var vides = 7
      
         }
        }
-       
-       var seconds = 0;
-       function timer(){
-              seconds = seconds + 1;
-              document.getElementById("counter").innerHTML = seconds;
-       }
-       setInterval(timer, 1000);

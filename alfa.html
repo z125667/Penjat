@@ -16,10 +16,18 @@ and open the template in the editor.
     </head>
     
  
-        <div><b style="color: white;">Prototip JOC Penjat</b></div>
+        <div><b style="color: white;">Prototip JOC PENJAT</b></div>
 <body onload="amagaTot();" style="background-image: url('img/Castle2.png'); background-size: 1340px 980px; background-repeat: no-repeat">
          
-            
+       <script> 
+       var seconds = 0;
+       function timer(){
+              seconds = seconds + 1;
+              document.getElementById("counter").innerHTML = seconds;  
+       }
+              setInterval(timer, 1000);  
+        </script>
+          
         <input type="text" placeholder="Escriu en minuscules" id="valor">  <button onclick="Comprovar();">Verificar</button>
             <h2 style="color: white;">Paraula</h2>
              
@@ -31,11 +39,9 @@ and open the template in the editor.
             
             <p style="color: white;" id="dolentes"> _ _ _ _ _ _ _ </p>
             
-            
+            <h2 style="color: white;" >Temps</h2>
+            <h2 style="color: white;"  id="counter">0</h2>
              
-            <div>
-            
-            <div/>
             
     <div>
                 
@@ -57,4 +63,45 @@ and open the template in the editor.
                 
     <div><b style="color: #FFFFFF">  design by DimovCorp.</b></div>
     
+    <audio id="bell_toll">
+        <source src="aud/bell_toll.mp3" type="audio/mpeg">
+    </audio>
+    
+     <audio id="bell_toll_x3">
+        <source src="aud/bell_toll_x3.mp3" type="audio/mpeg">
+    </audio>
+    
+     <audio id="boom_cloud">
+        <source src="aud/boom_cloud.mp3" type="audio/mpeg">
+    </audio>
+    
+     <audio id="cat-fight">
+        <source src="aud/cat-fight.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="cheer">
+        <source src="aud/cheer.mp3" type="audio/mpeg">
+    </audio>
+
+     <audio id="clock_ticking">
+        <source src="aud/clock_ticking.mp3" type="audio/mpeg">
+    </audio>
+    
+     <audio id="miau">
+        <source src="aud/miau.mp3" type="audio/mpeg">
+    </audio>
+    
+     <audio id="mystery">
+        <source src="aud/mystery.mp3" type="audio/mpeg">
+    </audio>
+    
+
+<a href="https://penjat-github.netlify.app/imatgesons.html"    
+   id="ca" > <img src="img/ca.png" alt="tra_ca" title="en Catala"></a>
+   
+<a href="https://penjat--github-netlify-app.translate.goog/imatgesons.html?
+   _x_tr_sl=auto&_x_tr_tl=es&_x_tr_hl=es"
+   
+   id="es"> <img src="img/es.png" alt="tra" title="en Español"></a>
+        </body>
 </html>

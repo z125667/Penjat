@@ -3,7 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var vides = 7
+
+var Paraula = [] ;
+var Lletres = ["_", "_", "_", "_", "_", "_", "_",];
+var Vides = 7; 
+
+var paraules = ["cordes", "fetge", "forca" , ]
          
       function Comprovar(){
        lletra = document.getElementById("valor").value;
