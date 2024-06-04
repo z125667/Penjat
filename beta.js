@@ -143,3 +143,6 @@ var paraules = ["cordes", "fetge", "forca" , ]
               document.getElementById("counter").innerHTML = seconds;
        }
        setInterval(timer, 1000);
+       
+       
+      
