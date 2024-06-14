@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
- const Idiomes_dft = [
-{
- "IdIdioma": "ca",
+    // Diferents idiomes per la GUI
+    const Idiomes_dft = [
+        {
+            "IdIdioma": "ca",
             "Titol": "Versió amb Base de Dades Joc del Penjat",
             "Versio": "Versió γ Joc del Penjat",
             "Input": "Escriu una lletra minúscula",
@@ -106,16 +107,44 @@
             "Descansi": "Rest in peace - RIP!",
             "Puntuacio": "Score:"
         }
-    ];
+    ]
     var Idiomes = Idiomes_dft;
     
+    // Simulam una Taula de ParaulesPistes, similar a la consulta a la base de dades, amb un array d'objectes
+    const Taula_dft = [
+        // Deixam per defecte les paraules i pistes en Català
+        {"Paraula": "cordes", "Pista": "A ca un penjat, no hi anomenis cordes"},
+        {"Paraula": "fetge", "Pista": "Setze jutges d'un jutjat mengen fetge d'un penjat"},
+        {"Paraula": "forca", "Pista": "A la quinta forca"},
+        {"Paraula": "jutges", "Pista": "Setze jutges d'un jutjat mengen fetge d'un penjat"},
+        {"Paraula": "jutjat", "Pista": "Setze jutges d'un jutjat mengen fetge d'un penjat"},
+        {"Paraula": "mengen", "Pista": "Setze jutges d'un jutjat mengen fetge d'un penjat"},
+        {"Paraula": "penjat", "Pista": "A ca un penjat, no hi anomenis cordes"},
+        {"Paraula": "quinta", "Pista": "A la quinta forca"},
+        {"Paraula": "setze", "Pista": "Setze jutges d'un jutjat mengen fetge d'un penjat"}
+    ];
+    var Taula = Taula_dft;
+    
 var Paraula = [];
-var Lletres = ["_", "_", "_", "_", "_", "_", "_",];
-var Vides = 7; 
+var Lletres = ["_", "_", "_", "_", "_", "_", "_"];
+var vides = 7; 
 
-var paraules = ["cordes", "fetge", "forca"];
+// var paraules = ["cordes", "fetge", "forca"];
          
-      function Comprovar(){
+         var aleatori = Math.floor(Math.random() * Taula.length);
+         var paraula = Taula(aleatori).Paraula;
+         var pista = Taula(aleatori).Pista;
+  
+       
+       var seconds = 0;
+       function timer(){
+              seconds = seconds + 1;
+              document.getElementById("counter").innerHTML = seconds;
+       }
+       setInterval(timer, 1000);
+       
+
+    function Comprovar(){
        lletra = document.getElementById("valor").value;
        document.getElementById("valor").value = "";
        // Convertim les majuscules a minuscules
@@ -143,16 +172,25 @@ var paraules = ["cordes", "fetge", "forca"];
       case"ó":
           lletra = "o";
           break;
-    }          
-        
-     if ((lletra >= "a") && (lletra <= "m")) {
+    }
+    
+    alert(paraula);   
+    // if ((lletra >= "a") && (lletra <= "m")) {
+    var pos = paraula.indexOf(lletra);
+    if ((pos != -1) && (lletra !="")) {
         alert("Has encertat!!");
-        bones = document.getElementById("bones").innerHTML;
+        var bones = document.getElementById("bones").innerHTML;
         bones = bones + lletra + " ";
           document.getElementById("bones").innerHTML = bones;
-          window.alert("Molt be");
-    }
-     else {
+          // window.alert("Molt be");
+          document.getElementById("miau").play();
+    
+    } else if (((lletra >= "a") && (lletra <= "z")) ||
+                (lletra == "ñ") || (lletra == "_")  ||
+                (lletra == "ç") || (lletra == "."))  {  
+       
+         document.getElementById("boom_cloud").play(); 
+        
          alert("Has fallat!");
          vides = vides - 1;
          document.getElementById("vides").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + vides;
@@ -242,22 +280,16 @@ var paraules = ["cordes", "fetge", "forca"];
      
         }
        }
-       
-       var seconds = 0;
-       function timer(){
-              seconds = seconds + 1;
-              document.getElementById("counter").innerHTML = seconds;
-       }
-       setInterval(timer, 1000);
-       
+
        
             
             function CanviarIdioma(IdIdioma) {
             
-            AlaWeb_SQLite(IdIdioma);
-            Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma);
+        AlaWeb_SQLite(IdIdioma);
+        Idioma = Idiomes.find(Idioma => Idioma.IdIdioma == IdIdioma);
             
             /*
+        // Canviam els diferents literals de la GUI segons l'idioma        
             document.title = Idioma.Titol;
             document.getElementById("Versio").innerHTML = Idioma.Versio;
             document.getElementById("lletra").innerHTML = Idioma.input;
@@ -269,7 +301,45 @@ var paraules = ["cordes", "fetge", "forca"];
             document.getElementById("moix").innerHTML = Idioma.moix;
             document.getElementById("Lletres").innerHTML = Idioma.Lletres;
              */
+
+
+        // Escull una nova paraula aleatòriament
+        window.alert("Nova paraula aleatòria / Nueva palabra aleatoria / New random word!");
+        aleatori = Math.floor(Math.random() * Taula.length);
+        paraula = Taula[aleatori].Paraula;
+        pista = Taula[aleatori].Pista;
+       
+        Paraula = [];
+        // Marcam cada lletra amb un "_"
+        for (var i = 0; i < paraula.length; i++) {
+            Paraula[i] = "_";
         }
+        document.getElementById("paraula").innerHTML = Paraula;
+
+        for (var i = 0; i < Vides_dft - Vides; i++) {
+            Lletres[i] = "_";
+        }
+        document.getElementById("lletres").innerHTML = Lletres;
+
+        Vides = Vides_dft;    
+        document.getElementById("vides").innerHTML =
+                "&nbsp;&nbsp;&nbsp;\n\
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + Vides;
+
+        AmagaForca();
+       
+        // Bandera de la paraula/pista
+        if (IdIdioma_ant == "en") { IdIdioma_ant = "gb"; }                                
+        document.getElementById("bandera").src = "img/" + IdIdioma_ant + ".png";                      
+        IdIdioma_ant = IdIdioma;
+       
+        // Bandera del textos de la GUI
+        if ((IdIdioma != "ca") && (IdIdioma != "es")) {
+            // Per a l'idioma "en = English" la bandera es la de "gb = Great Britain"  
+            if (IdIdioma == "en") { IdIdioma = "gb"; }                                
+            document.getElementById("gb").src = "img/" + IdIdioma + ".png";        
+        }
+    }
                   
 
     // Funció per carregar la base de dades penjat.db
@@ -277,25 +347,23 @@ var paraules = ["cordes", "fetge", "forca"];
         window.alert("AlaWeb_SQLite IdIdioma = '" + IdIdioma + "'");
         config = {
             locateFile: filename => `/dist/${filename}`
-          
         };
 
         // Recuperam de la base de dades els TextosGUI per tots els Idiomes
         alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat; \n\
                 SELECT * FROM TblTextosGUI;',
-            [], function(idiomes) {Print_Data(Idiomes = idiomes.pop());}    
-
+            [], function(idiomes) {Print_Data(Idiomes = idiomes.pop());}
         //    [], function(idiomes) {SQL_TblTextosGUI(IdIdioma, idiomes.pop());}
         );
-
+     
         /*
-        alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat; \n\
-                SELECT Paraula, Pista                \n\
+        alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat;\n\
+            SELECT Paraula, Pista \n\
                 FROM TblParaules INNER JOIN TblPistes \n\
-       ON TblParaules.IdPista = TblPistes.IdPista      \n\
-       Where TblParaules.IdIdioma = "' + IdIdioma + '";',    
-        //    [], function(idiomes) {Print_Data(Idiomes = idiomes.pop());}
-            [], function(idiomes) {SQL_TblTextosGUI(IdIdioma, idiomes.pop());}
+                ON TblParaules.IdPista = TblPistes.IdPista    \n\
+                Where TblParaules.IdIdioma = "' + IdIdioma + '";',    
+            [], function(taula) {Print_Data(Taula = taula.pop());}
+        //    [], function(taula) {SQL_TblTextosGUI(IdIdioma, taula.pop());}
         );
         */
   } 
@@ -322,8 +390,7 @@ var paraules = ["cordes", "fetge", "forca"];
                };    
             }
                             
-            
-    // Print data  
+   // Print data  
     function Print_Data(res) {
         for (var i in res)
         {
