@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--
+-->
+<html>
+    <head>
+        <title>Joc del Penjat</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/penjat.css">
+	<script src="js/gamma.js"></script>
+        <script src="js/alasql.js"></script>
+        <script src="js/sql.js"></script>
+    </head>
+    
+    <body style="background-image: url('img/1.png'); background-size: 640px 480px; background-repeat: no-repeat" onload="Inici();">
+        <h1>Versión γ joc del penjat</h1>
+        <input type="text" placeholder="Escribe una letra minúscula" id="valor" maxlength="1">
+        <button onclick="Comprobar();" id="boto">Comprobar</button>
+        
+        <h2>Palabra:</h2>
+        <p id="Palabra">_,_,_,_,_,_,_</p>
+
+        
+        <h2 id="Vidas">Vidas:</h2>
+        <p id="vida">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7</p>
+        
+        
+        <h2 id="Errades">Errores:</h2>
+        <p id="LlErrades">"_,_,_,_,_,_,_"</p>     
+        
+        
+        <p>Videotutorial: <a href="https://youtu.be/eNVsh-yOrgU?si=30fe6WmGmWBlr10i">Tutorial joc del Penjat</a></p>
+        <p>Crèdits: <a href="https://prosselloe.wordpress.com/">Blog Pere Miquel</a></p>
+        <p>Hecho por: <b>Denislav Dimov Ivaylov</b></p>
+          
+        <!--Cream els texts i estils de la pàgina-->
+        <button id="pista" onclick="alert(pista);" title="Pista">Pista</button> 
+        <h4 style="color:black;" id="counter">0</h4>
+           
+        <div id='Idiomes'> 
+            <a id='ca' onclick="CanviarIdioma('ca')"><img title="Català" src="img/ca.png" alt="ca"></a>
+            <a id='es' onclick="CanviarIdioma('es')"><img title="Castellano" src="img/es.png" alt="es"></a>
+            <a id='en' onclick="CanviarIdioma('en')"><img title="English" src="img/gb.png" id='gb' alt="en"></a>
+        </div>
+         
+        
+        <div id='Diccionaris'> 
+            <a id='dic_ca' title="Diccionari Català" href="https://dlc.iec.cat/"><img src="img/ca.png" alt="diccionari_ca"></a>
+            <a id='dic_es' title="Diccionario Castellano" href="https://dle.rae.es/"><img src="img/es.png" alt="diccionari_es"></a>
+            <a id='dic_en' title="English Dictionary" href="https://www.wordreference.com/definition/"><img src="img/gb.png" alt="diccionari_en"></a>
+        </div>
+        
+        <select id="IdiomaExtra" onchange="CanviarIdioma(this.value)" title="Select">
+            <option value="en">en</option>
+            <option value="fr">fr</option>
+            <option value="it">it</option>
+            <option value="de">de</option>
+            <option value="ca">ca</option>
+            <option value="es">es</option>
+      </select>   
+           
+        <div id='Audios'> 
+            <audio id="inici">
+                <source src="aud/mystery.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="miau">
+                <source src="aud/miau.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="cheer">
+                <source src="aud/cheer.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="cat-fight">
+                <source src="aud/cat-fight.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="clock_ticking">
+                <source src="aud/clock_ticking.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="boom_cloud">
+                <source src="aud/boom_cloud.mp3" type="audio/mpeg">
+            </audio>
+           <audio id="bell_toll_x3">
+                <source src="aud/bell_toll_x3.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="bell_toll">
+                <source src="aud/bell_toll.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+        
+        <div id='Imatges'> 
+            <img src="img/ahorcado_6.png" id="ahorcado_6" style="width:280px; height: 270px;" title="Et queden 6 vides!">
+            <img src="img/ahorcado_5.png" id="ahorcado_5" style="width:280px; height: 270px;" title="Et queden 5 vides!">
+            <img src="img/ahorcado_4.png" id="ahorcado_4" style="width:280px; height: 270px;" title="Et queden 4 vides!">
+            <img src="img/ahorcado_3.png" id="ahorcado_3" style="width:280px; height: 270px;" title="Et queden 3 vides!">
+            <img src="img/ahorcado_2.png" id="ahorcado_2" style="width:280px; height: 270px;" title="Et queden 2 vides!">
+            <img src="img/ahorcado_1.png" id="ahorcado_1" style="width:280px; height: 270px;" title="Et queden 1 vida!">
+            <img src="img/ahorcado_0.png" id="ahorcado_0" style="width:280px; height: 270px;" title="No et queda cap vida!">
+        </div>
+        
+    </body>
+</html>
+
