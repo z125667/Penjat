@@ -1,0 +1,51 @@
+p {
+  color: black;
+}
+
+h4 {
+  color: white;
+}
+
+h2 {
+  color: white;
+}
+
+h1 {
+  color: white;
+}
+
+body {
+    background:linear-gradient(#aaa 0, #ddd 10px, #fff 55px);
+    border:1px solid black;
+    padding:10px 20px;
+    box-shadow:5px 0px 30px #000;
+    border-radius:8px;
+    margin:0;
+    width:640px;
+    height:480px;
+}
+
+#Idioma { position:relative; top:-386px; left:318px; }
+#Sons { position:relative; top:-380px; left:558px; }
+#Pista { position:relative; top:-350px; left:130px; }
+#Segons { position:relative; top:-285px; left:130px; }
+#Punts { position:relative; top:-200px; left:90px; }
+#Guia { position:relative; top:-305px; left:260px; }
+#Caminar { position:relative; top:-440px; left:430px; }
+#Rotar { position:relative; top:-400px; left:430px; }
+#Teclat { position:relative; top:-360px; left:293px; }
+#Audios { position:relative; top:-480px; left:0px; }
+#Imatges { position:absolute; top:120px; left:320px; }
+#Moix { position:absolute; top:275px; left:250px; }
+#ca { position:relative; top:-490px; left:348px; }
+#es { position:relative; top:-490px; left:350px; }
+#en { position:relative; top:-490px; left:352px; }
+#dic_ca { position:relative; top:-518px; left:490px; }
+#dic_es { position:relative; top:-518px; left:492px; }
+#dic_en { position:relative; top:-518px; left:494px; }
+#IdiomaExtra { position:relative; top:-544px; left:440px; }
+#teclado { position:absolute; top:154px; left:560px; }
+#Img { position:absolute; top:80px; left:560px; }
+#pista { position:absolute; top:182px; left:138px; }
+#BanderaPista { position:absolute; top:166px; left:194px; }
+#sonido { position:absolute; top:120px; left:560px; }
