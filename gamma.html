@@ -13,44 +13,44 @@
     </head>
     
     <body style="background-image: url('img/1.png'); background-size: 640px 480px; background-repeat: no-repeat" onload="Inici();">
-        <h1>Versión γ joc del penjat</h1>
-        <input type="text" placeholder="Escribe una letra minúscula" id="valor" maxlength="1">
-        <button onclick="Comprobar();" id="boto">Comprobar</button>
+        <h1 id="version" style="color:white;">Versió γ joc del penjat</h1>
+        <input type="text" placeholder="escriu una lletra minuscula" id="valor" maxlength="1">
+        <button onclick="Comprobar();" id="boton">Comprobar</button>
         
-        <h2>Palabra:</h2>
-        <p id="Palabra">_,_,_,_,_,_,_</p>
+        <h2 id="palabra" style="color:white;">Paraula:</h2>
+        <p id="Palabra" style="color:black;">_,_,_,_,_,_,_</p>
 
         
-        <h2 id="Vidas">Vidas:</h2>
-        <p id="vida">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7</p>
+        <h2 id="vidas" style="color:white;">Vides:</h2>
+        <p id="vida" style="color:red;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7</p>
         
         
-        <h2 id="Errades">Errores:</h2>
-        <p id="LlErrades">"_,_,_,_,_,_,_"</p>     
+        <h2 id="errores" style="color:white;">Errors:</h2>
+        <p id="Errores" style="color:black;">_,_,_,_,_,_,_</p>     
         
         
-        <p>Videotutorial: <a href="https://youtu.be/eNVsh-yOrgU?si=30fe6WmGmWBlr10i">Tutorial joc del Penjat</a></p>
-        <p>Crèdits: <a href="https://prosselloe.wordpress.com/">Blog Pere Miquel</a></p>
-        <p>Hecho por: <b>Denislav Dimov Ivaylov</b></p>
+        <p style="color:black;">Tutorial: <a href="https://youtu.be/eNVsh-yOrgU?si=30fe6WmGmWBlr10i">Tutorial joc del penjat</a></p>
+        <p style="color:black;">Creditos: <a href="https://prosselloe.wordpress.com/">Web Pere Miquel</a></p>
+        <p style="color:black;">Hecho por: <b>Denislav Dimov Ivaylov</b></p>
           
         <!--Cream els texts i estils de la pàgina-->
-        <button id="pista" onclick="alert(pista);" title="Pista">Pista</button> 
-        <h4 style="color:black;" id="counter">0</h4>
+        <button id="pista" onclick="alert(pista);">pista</button> 
+        <h3 style="color:black;" id="tiempo">0</h3>
            
         <div id='Idiomes'> 
-            <a id='ca' onclick="CanviarIdioma('ca')"><img title="Català" src="img/ca.png" alt="ca"></a>
-            <a id='es' onclick="CanviarIdioma('es')"><img title="Castellano" src="img/es.png" alt="es"></a>
-            <a id='en' onclick="CanviarIdioma('en')"><img title="English" src="img/gb.png" id='gb' alt="en"></a>
+            <a id='ca' onclick="CanviarIdioma('ca')"><img src="img/ca.png"></a>
+            <a id='es' onclick="CanviarIdioma('es')"><img src="img/es.png"></a>
+            <a id='en' onclick="CanviarIdioma('en')"><img src="img/gb.png"></a>
         </div>
          
         
         <div id='Diccionaris'> 
-            <a id='dic_ca' title="Diccionari Català" href="https://dlc.iec.cat/"><img src="img/ca.png" alt="diccionari_ca"></a>
-            <a id='dic_es' title="Diccionario Castellano" href="https://dle.rae.es/"><img src="img/es.png" alt="diccionari_es"></a>
-            <a id='dic_en' title="English Dictionary" href="https://www.wordreference.com/definition/"><img src="img/gb.png" alt="diccionari_en"></a>
+            <a id='dic_ca' href="https://dlc.iec.cat/"><img src="img/ca.png"></a>
+            <a id='dic_es' href="https://dle.rae.es/"><img src="img/es.png"></a>
+            <a id='dic_en' href="https://www.wordreference.com/definition/"><img src="img/gb.png"></a>
         </div>
         
-        <select id="IdiomaExtra" onchange="CanviarIdioma(this.value)" title="Select">
+        <select id="IdiomaExtra" onchange="CanviarIdioma(this.value)">
             <option value="en">en</option>
             <option value="fr">fr</option>
             <option value="it">it</option>
@@ -87,13 +87,13 @@
         </div>
         
         <div id='Imatges'> 
-            <img src="img/ahorcado_6.png" id="ahorcado_6" style="width:280px; height: 270px;" title="Et queden 6 vides!">
-            <img src="img/ahorcado_5.png" id="ahorcado_5" style="width:280px; height: 270px;" title="Et queden 5 vides!">
-            <img src="img/ahorcado_4.png" id="ahorcado_4" style="width:280px; height: 270px;" title="Et queden 4 vides!">
-            <img src="img/ahorcado_3.png" id="ahorcado_3" style="width:280px; height: 270px;" title="Et queden 3 vides!">
-            <img src="img/ahorcado_2.png" id="ahorcado_2" style="width:280px; height: 270px;" title="Et queden 2 vides!">
-            <img src="img/ahorcado_1.png" id="ahorcado_1" style="width:280px; height: 270px;" title="Et queden 1 vida!">
-            <img src="img/ahorcado_0.png" id="ahorcado_0" style="width:280px; height: 270px;" title="No et queda cap vida!">
+            <img src="img/ahorcado_6.png" id="ahorcado_6" style="width:280px; height: 270px;">
+            <img src="img/ahorcado_5.png" id="ahorcado_5" style="width:280px; height: 270px;">
+            <img src="img/ahorcado_4.png" id="ahorcado_4" style="width:280px; height: 270px;">
+            <img src="img/ahorcado_3.png" id="ahorcado_3" style="width:280px; height: 270px;">
+            <img src="img/ahorcado_2.png" id="ahorcado_2" style="width:280px; height: 270px;">
+            <img src="img/ahorcado_1.png" id="ahorcado_1" style="width:280px; height: 270px;">
+            <img src="img/ahorcado_0.png" id="ahorcado_0" style="width:280px; height: 270px;">
         </div>
         
     </body>
