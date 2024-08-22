@@ -1,5 +1,4 @@
-// Diferents idiomes per la GUI per si la base de dades no carrega
-const Idiomes_dft = [
+const Idiomas_dft = [
     {
         "IdIdioma": "ca",
         "Titol": "Versió amb Base de Dades Joc del Penjat",
@@ -103,10 +102,9 @@ const Idiomes_dft = [
         "Puntuacio": "Score:"
     }
 ];
-var Idiomes = Idiomes_dft;
-var Idioma = Idiomes.find(Idioma => Idioma.IdIdioma === "ca");
+var Idiomas = Idiomas_dft;
+var Idioma = Idiomas.find(Idioma => Idioma.IdIdioma === "ca");
 
-//Simulam una Taula de ParaulesPistes, similar a la consulta a la base de dades, amb un array d'objectes
 const Taula_dft = [
     // Deixam per defecte les paraules i pistes en Català
     {"Paraula": "cordes", "Pista": "A ca un penjat, no hi anomenis cordes"},
@@ -121,57 +119,40 @@ const Taula_dft = [
     ];
 var Taula = Taula_dft; 
 
-//Establim constant individual vides
-const Vides_dft = 7;
+const Vidas_dft = 7;
 
-//Establim variables
-var Vides = Vides_dft;
+var Vidas = Vidas_dft;
 var IdIdioma_ant = "ca";
-var correcte = 0;
-var Punts = 0;
-var segons = 0;
-var Encerts = []; //bones, Paraula
-var Errades = ["_","_","_","_","_","_","_"]; //dolentes, Lletres
-var idbo = "";
+var segundos = 0;
+var Bones = [];
+var dolentes = ["_","_","_","_","_","_","_"];
 
-//Llista de paraules per al joc i les pistes associades
+//por si acaso la tabla no carga
 var paraules = ["cordes","fetge", "forca", "jutges", "jutjat", "mengen", "penjat", "quinta", "setze"];
 var pistes = ["A la quinta forca", "A ca un penjat, no hi anomenis cordes", "Setze jutges d'un jutjat mengen fetge d'un penjat"];
 var paraulespistes = [1, 2, 0, 2, 2, 2, 1, 0, 2];
 
 
-//Escull una paraula aleatòriament (usat en versions anteriors)
 var aleatori = Math.floor(Math.random() * paraules.length);
 var paraula = paraules[aleatori];
 var pista = pistes[paraulespistes[aleatori]];
 
-// Alternativament, fent servir l'array d'objectes
-//window.alert(Taula.length);
+
 aleatori = Math.floor(Math.random() * Taula.length);
 paraula = Taula[aleatori].Paraula;
 pista = Taula[aleatori].Pista;
-//window.alert("aleatori="  + aleatori + ", paraula=" + paraula + ", pista=" + pista);
 
-//Posam subguions per encerts
 for (var i = 0; i < paraula.length; i++) {
-        Encerts[i] = "_";
+        Bones[i] = "_";
 }
 
-//Funció principal comprovar
+//aqui comprueba
 function Comprobar() {
-     //Es comprova si no s'ha introduit algun caràcter
-    if (document.getElementById("valor").value === ""){
-        alert("Introdueix algun caràcter per jugar!");                    
-    }
-    
-    //Asignam valor introduit a variable lletra i netejam
     var lletra = document.getElementById("valor").value;
     document.getElementById("valor").value = "";
     
-    //Passam valor introduit a minúscula
     lletra = lletra.toLowerCase();
 
-    //Feim canvi de lletra si té accents o dieresis
     switch (lletra) {
         case "á":
         case "à":
@@ -195,169 +176,100 @@ function Comprobar() {
             break;
     }
     
-    //Comporvam si la lletra introduida ja s'ha introduit anteriorment
-    if ((Encerts.indexOf(lletra) !== -1) || (Errades.indexOf(lletra) !== -1)) {
+    if ((Bones.indexOf(lletra) !== -1) || (dolentes.indexOf(lletra) !== -1)) {
         window.alert(Idioma.Repetida);
     } else {
     var pos = paraula.indexOf(lletra);
-
-    //Comprovam si la lletra es troba dins la paraula
+    
     if ((pos !== -1) && (lletra !== "")){
-        if (document.getElementById('off').hidden) {
-                document.getElementById("miau").play();
-        }
+        document.getElementById("miau").play();
         alert(Idioma.Encertat);
         for (var i = pos; i < paraula.length; i++){
             if (paraula[i] === lletra){
-            Encerts[i] = lletra;
+            Bones[i] = lletra;
         }
         }
-        document.getElementById("Palabra").innerHTML = Encerts; 
+        document.getElementById("Palabra").innerHTML = Bones; 
 
-    //Sinó, s'ha fallat amb la lletra
     }else if (((lletra >= "a") && (lletra <= "z")) ||
         (lletra === "ñ") || (lletra === "-") ||
         (lletra === "ç") || (lletra === "·")) {
-            if (document.getElementById('off').hidden) {
-                 document.getElementById("boom_cloud").play();
-            }
-            if (document.getElementById('off').hidden) {
-                document.getElementById("clock_ticking").play();
-            }
+            document.getElementById("boom_cloud").play();
+            document.getElementById("clock_ticking").play();
             alert(Idioma.Fallat);
-            //Es resta la vida
-            Errades[Vides_dft - Vides] = lletra;
-            document.getElementById("LlErrades").innerHTML =  Errades; 
-            Vides = Vides - 1;
+            dolentes[Vidas_dft - Vidas] = lletra;
+            document.getElementById("Errores").innerHTML =  dolentes; 
+            Vidas = Vidas - 1;
             MostraImg();
-            //Es comprova si era la última vida
-            if (Vides <= 0){
+            if (Vidas <= 0){
                 alert(Idioma.Perdut);
                 document.body.style.backgroundImage = "url('img/3.png')";
-                if (document.getElementById('off').hidden) {
-                    document.getElementById("cat-fight").play();
-                }
+                document.getElementById("cat-fight").play();
                 window.alert(Idioma.Descansi);
-                if (document.getElementById('off').hidden) {
-                    document.getElementById("bell_toll_x3").play();
-                }  
-                Final();
             }
-            //Si vides és menor que 3, es canvia el color a vermell 
-            if (Vides <= 3){
-                document.getElementById("vida").style.color = "red";
-            }
-            document.getElementById("vida").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + Vides;     
+            document.getElementById("vida").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + Vidas;     
     }else{
-        //Si no s'ha complit cap condició, el caràcter és incorrecte
-        if (document.getElementById('off').hidden) {
-                    document.getElementById("clock_ticking").play();
-        } 
+        document.getElementById("clock_ticking").play(); 
         alert(Idioma.Incorrecte);
     }
     }
     
-     //Es comprova si ja s'han encertat totes les lletres
-    if(Encerts.indexOf("_") === -1){
+    if(Bones.indexOf("_") === -1){
         alert(Idioma.Guanyat);
-        AmagaImg();
-        if (document.getElementById('off').hidden) {
-                    document.getElementById("cheer").play();
-        }
+        document.getElementById("cheer").play();
         document.body.style.backgroundImage = 'url("img/Party.png")'
-        //document.getElementById("algortime").hidden = false;
-        Final();
-        // Calculam i mostram la puntació
-        Punts = paraula.length * Vides * 10 - segons;
-        if (Punts < 0) { Punts = 0; };
-        document.getElementById("Puntuació").innerHTML = Idioma.Puntuacio + " " + Punts;
     }
 }
     
-//Canviam els diferents literals de la GUI durant l'idioma
 function CanviarIdioma(IdIdioma){
     if((IdIdioma !== "ca") && (IdIdioma !== "es")) {
         document.getElementById("IdiomaExtra").value = IdIdioma;
     }
     AlaWeb_SQLite(IdIdioma);
-    Idioma = Idiomes.find(Idioma => Idioma.IdIdioma === IdIdioma);
-    //alert(Idioma.Titol);
+    Idioma = Idiomas.find(Idioma => Idioma.IdIdioma === IdIdioma);
+        alert(Idioma.Titol);
     document.title = Idioma.Titol;
-    document.getElementById("Versio").innerHTML = Idioma.Versio;
+    document.getElementById("version").innerHTML = Idioma.Versio;
     document.getElementById("valor").placeholder = Idioma.Input;
-    document.getElementById("boto").innerHTML = Idioma.Comprovar;
-    document.getElementById("TParaula").innerHTML = Idioma.Paraula;
-    document.getElementById("Sopes").innerHTML = Idioma.Sopes;
+    document.getElementById("boton").innerHTML = Idioma.Comprovar;
+    document.getElementById("palabra").innerHTML = Idioma.Paraula;
     document.getElementById("pista").innerHTML = Idioma.Pista;
-    document.getElementById("Vides").innerHTML = Idioma.Vides;
-    document.getElementById("Set").innerHTML = Idioma.Moix;
-    document.getElementById("Errades").innerHTML = Idioma.Lletres;
-    document.getElementById("Ets").innerHTML = Idioma.Ets;
-    if (Punts > 0) {
-        document.getElementById("Punts").innerHTML = Idioma.Puntuacio + " " + Punts;
-    }
-
-    // Escull una nova paraula aleatòriament ja que hem canviat d'idioma
+    document.getElementById("vidas").innerHTML = Idioma.Vides;
+    document.getElementById("errores").innerHTML = Idioma.Lletres;
+    
     window.alert("Nova paraula aleatòria / Nueva palabra aleatoria / New random word!");
     aleatori = Math.floor(Math.random() * Taula.length);
     paraula = Taula[aleatori].Paraula;
     pista = Taula[aleatori].Pista;
     
-    Encerts = [];
-    //window.alert("[" + paraula + "]=[" + pista + "]");
+    Bones = [];
  
-    //Marcam cada lletra de la paraula per encertar amb un "_"
     for (var i = 0; i < paraula.length; i++) {
-        Encerts[i] = "_";
+        Bones[i] = "_";
     }
-    document.getElementById("LlEncertades").innerHTML = Encerts;
+    document.getElementById("Palabra").innerHTML = Bones;
     
-    //Marcam cada espai per fallar amb un "_" en funció de les vides 
-    for (var i = 0; i < Vides_dft - Vides; i++) {
-        Errades[i] = "_";
+    for (var i = 0; i < Vidas_dft - Vidas; i++) {
+        dolentes[i] = "_";
     }
-    document.getElementById("LlErrades").innerHTML = Errades;
+    document.getElementById("Errores").innerHTML = dolentes;
     
-    //Tornam a establir vides
-    Vides = Vides_dft; 
+    Vidas = Vidas_dft; 
     document.getElementById("vida").innerHTML = 
         "&nbsp;&nbsp;&nbsp;\n\
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + Vides;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + Vidas;
     MostraImg();
     
-    //Canvi de bandera pista 
-    if (IdIdioma_ant === "en") { 
-        IdIdioma_ant = "gb"; 
-    }
-    document.getElementById("Bander").src = "img/" + IdIdioma_ant + ".png";
-    
-    //Sobreescrivim l'idioma anterior
     IdIdioma_ant = IdIdioma;
-   
-    //Canvi de bandera idioma
-    if ((IdIdioma !== "ca") && (IdIdioma !== "es")) {
-        //Per a l'idioma "en = English" la bandera es la de "gb = Great Britain"
-        if (IdIdioma === "en") { 
-            IdIdioma = "gb"; 
-        }
-    document.getElementById("gb").src = "img/" + IdIdioma + ".png";
-    }
 }
     
-//Afegim la possibilitat d'executar accions amb la tecla intro
 window.onkeypress = function(evobject) { 
     if (evobject.keyCode === 13 || evobject.keyCode === 32 ) {
-        Comprovar();
+        Comprobar();
     }
 };
 
-//Definim la funció del final, quan s'ha acabat el joc i s'atura el joc
-function Final() {
-    document.getElementById("valor").disabled = true;
-    document.getElementById("boto").disabled = true;
-}
-
-//Definim la funció de l'inici, posam les coses a lloc     
+//empezar
 function Inici() {
     document.getElementById("ahorcado_0").hidden = true;
     document.getElementById("ahorcado_1").hidden = true;
@@ -367,15 +279,14 @@ function Inici() {
     document.getElementById("ahorcado_5").hidden = true;
     document.getElementById("ahorcado_6").hidden = true;
     document.getElementById('inici').play();
-    document.getElementById("LlEncertades").innerHTML = Encerts;
-    document.getElementById("LlErrades").innerHTML = Errades;
+    document.getElementById("Palabra").innerHTML = Bones;
+    document.getElementById("Errores").innerHTML = dolentes;
     document.getElementById("Audios").hidden = true;
     alert("Let's go: a la quinta forca / al quinto pino / to the boondocks?");
 }
 
-//Definim la funció que canvia les imatges del penjat quan es fallen lletres
 function MostraImg() {
-    switch (Vides) {
+    switch (Vidas) {
         case 6:
             document.getElementById("ahorcado_6").hidden = false;
             break;
@@ -406,28 +317,14 @@ function MostraImg() {
     }
 }
 
-//Definim la funció que amaga les imatges quan s'acaba el joc
-function AmagaImg() {
-            document.getElementById("ahorcado_6").hidden = true;
-            document.getElementById("ahorcado_5").hidden = true;
-            document.getElementById("ahorcado_4").hidden = true;
-            document.getElementById("ahorcado_3").hidden = true;
-            document.getElementById("ahorcado_2").hidden = true;
-            document.getElementById("ahorcado_1").hidden = true;
-            document.getElementById("ahorcado_0").hidden = true;
-            document.getElementById("algoritme").hidden = false;
-}
-
-//Definim la funció que agafa les taules corresponents de la base de dades
 function AlaWeb_SQLite(IdIdioma) {
     config = {
     locateFile: filename => `/dist/${filename}`
     };
-    //Recuperam de lam base de dades els textosgui èr tots els idiomes
     alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat; \n\
             SELECT * FROM TblTextosGUI;',
-        [], function(idiomes) {SQL_TblTextosGUI(IdIdioma, idiomes.pop());}
-        //[], function(idiomes) {Print_Data(Idiomes = idiomes.pop());}
+        [], function(idiomas) {SQL_TblTextosGUI(IdIdioma, idiomas.pop());}
+        //[], function(idiomas) {Print_Data(Idiomas = idiomas.pop());}
     );
     alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat; \n\
             SELECT Paraula, Pista \n\
@@ -439,19 +336,16 @@ function AlaWeb_SQLite(IdIdioma) {
     );
 }
 
-//Definim la funció que canvia els textos de la gui segons l'idioma triat
 function SQL_TblTextosGUI(IdIdioma, TblTextosGUI) {    
-    Idiomes = TblTextosGUI;
-    if (Idiomes.length === 0) {Idiomes = Idiomes_dft;};
-        if (Idiomes.find(Idioma => Idioma.IdIdioma === IdIdioma) === undefined){
+    Idiomas = TblTextosGUI;
+    if (Idiomas.length === 0) {Idiomas = Idiomas_dft;};
+        if (Idiomas.find(Idioma => Idioma.IdIdioma === IdIdioma) === undefined){
         window.alert("GUI: Idioma no trobat/ Idioma no encontrado/ Language not found!");
-        Idiomes = Idiomes_dft;
+        Idiomas = Idiomas_dft;
     };
 }
 
-//Definim la funció que canvia les paraules i les pistes segons l'idioma triat
 function SQL_TblParaulesPistes(IdIdioma, TblParaulesPistes) {         
-    //window.alert("SQL_TblParaulesPistes IdIdioma = '" + IdIdioma + "'");
     Taula = TblParaulesPistes;
     if (Taula.length === 0) {
         window.alert("Idioma sense paraules/ Idioma sin palabras/ Language without words!");
@@ -464,13 +358,13 @@ function SQL_TblParaulesPistes(IdIdioma, TblParaulesPistes) {
     //window.alert(Taula[0].Pista);
 }
 
+//tiempo
 const Interval = setInterval(timer, 1000);    
 function timer(){
-    segons = segons + 1;
-    document.getElementById("counter").innerHTML = segons;
+    segundos = segundos + 1;
+    document.getElementById("tiempo").innerHTML = segundos;
 }
 
-//Definim la funció que mostra els valors de la base de dades, però no l'usam durant el joc
 // Print data  
 function Print_Data(res) {        
     for (var i in res)
