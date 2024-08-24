@@ -206,6 +206,8 @@ function Comprobar() {
                 document.body.style.backgroundImage = "url('img/3.png')";
                 document.getElementById("cat-fight").play();
                 window.alert(Idioma.Descansi);
+                document.getElementById("valor").disabled = true;
+                document.getElementById("boton").disabled = true;
             }
             document.getElementById("vida").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + Vidas;     
     }else{
@@ -221,7 +223,7 @@ function Comprobar() {
     }
 }
     
-function CanviarIdioma(IdIdioma){
+function CambiarIdioma(IdIdioma){
     if((IdIdioma !== "ca") && (IdIdioma !== "es")) {
         document.getElementById("IdiomaExtra").value = IdIdioma;
     }
@@ -270,7 +272,7 @@ window.onkeypress = function(evobject) {
 };
 
 //empezar
-function Inici() {
+function Inicio() {
     document.getElementById("ahorcado_0").hidden = true;
     document.getElementById("ahorcado_1").hidden = true;
     document.getElementById("ahorcado_2").hidden = true;
