@@ -12,7 +12,7 @@
         <script src="js/sql.js"></script>
     </head>
     
-    <body style="background-image: url('img/1.png'); background-size: 640px 480px; background-repeat: no-repeat" onload="Inici();">
+    <body style="background-image: url('img/1.png'); background-size: 640px 480px; background-repeat: no-repeat" onload="Inicio();">
         <h1 id="version" style="color:white;">Versió γ joc del penjat</h1>
         <input type="text" placeholder="escriu una lletra minuscula" id="valor" maxlength="1">
         <button onclick="Comprobar();" id="boton">Comprobar</button>
@@ -38,19 +38,12 @@
         <h3 style="color:black;" id="tiempo">0</h3>
            
         <div id='Idiomes'> 
-            <a id='ca' onclick="CanviarIdioma('ca')"><img src="img/ca.png"></a>
-            <a id='es' onclick="CanviarIdioma('es')"><img src="img/es.png"></a>
-            <a id='en' onclick="CanviarIdioma('en')"><img src="img/gb.png"></a>
-        </div>
-         
-        
-        <div id='Diccionaris'> 
-            <a id='dic_ca' href="https://dlc.iec.cat/"><img src="img/ca.png"></a>
-            <a id='dic_es' href="https://dle.rae.es/"><img src="img/es.png"></a>
-            <a id='dic_en' href="https://www.wordreference.com/definition/"><img src="img/gb.png"></a>
+            <a id='ca' onclick="CambiarIdioma('ca')"><img src="img/ca.png"></a>
+            <a id='es' onclick="CambiarIdioma('es')"><img src="img/es.png"></a>
+            <a id='en' onclick="CambiarIdioma('en')"><img src="img/gb.png"></a>
         </div>
         
-        <select id="IdiomaExtra" onchange="CanviarIdioma(this.value)">
+        <select id="IdiomaExtra" onchange="CambiarIdioma(this.value)">
             <option value="en">en</option>
             <option value="fr">fr</option>
             <option value="it">it</option>
@@ -86,7 +79,7 @@
             </audio>
         </div>
         
-        <div id='Imatges'> 
+        <div id='imagenes'> 
             <img src="img/ahorcado_6.png" id="ahorcado_6" style="width:280px; height: 270px;">
             <img src="img/ahorcado_5.png" id="ahorcado_5" style="width:280px; height: 270px;">
             <img src="img/ahorcado_4.png" id="ahorcado_4" style="width:280px; height: 270px;">
