@@ -266,12 +266,6 @@ MostraImg();
 IdIdioma_ant = IdIdioma;
 }
     
-window.onkeypress = function(evobject) { 
-    if (evobject.keyCode === 13 || evobject.keyCode === 32 ) {
-        Comprobar();
-    }
-};
-
 //tiempo
         const Interval = setInterval(timer, 1000);    
 function timer(){
