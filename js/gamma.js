@@ -103,7 +103,7 @@ const Idiomas_dft = [
     }
 ];
 var Idiomas = Idiomas_dft;
-var Idioma = Idiomas.find(Idioma => Idioma.IdIdioma === "ca");
+    var Idioma = Idiomas.find(Idioma => Idioma.IdIdioma === "ca");
 
 const Taula_dft = [
     // Deixam per defecte les paraules i pistes en Català
@@ -123,7 +123,7 @@ const Vidas_dft = 7;
 
 var Vidas = Vidas_dft;
 var IdIdioma_ant = "ca";
-var segundos = 0;
+    var segundos = 0;
 var Bones = [];
 var dolentes = ["_","_","_","_","_","_","_"];
 
@@ -143,12 +143,12 @@ paraula = Taula[aleatori].Paraula;
 pista = Taula[aleatori].Pista;
 
 for (var i = 0; i < paraula.length; i++) {
-        Bones[i] = "_";
+            Bones[i] = "_";
 }
 
 //aqui comprueba
 function Comprobar() {
-    var lletra = document.getElementById("valor").value;
+var lletra = document.getElementById("valor").value;
     document.getElementById("valor").value = "";
     
     lletra = lletra.toLowerCase();
@@ -165,7 +165,7 @@ function Comprobar() {
         case "í":
         case "ï":
             lletra = "i";
-            break;
+             break;
         case "ó":
         case "ò":
             lletra = "o";
@@ -177,74 +177,76 @@ function Comprobar() {
     }
     
     if ((Bones.indexOf(lletra) !== -1) || (dolentes.indexOf(lletra) !== -1)) {
-        window.alert(Idioma.Repetida);
+window.alert(Idioma.Repetida);
     } else {
     var pos = paraula.indexOf(lletra);
     
     if ((pos !== -1) && (lletra !== "")){
         document.getElementById("miau").play();
-        alert(Idioma.Encertat);
-        for (var i = pos; i < paraula.length; i++){
+                 alert(Idioma.Encertat);
+                    for (var i = pos; i < paraula.length; i++){
             if (paraula[i] === lletra){
-            Bones[i] = lletra;
+      Bones[i] = lletra;
         }
         }
         document.getElementById("Palabra").innerHTML = Bones; 
 
     }else if (((lletra >= "a") && (lletra <= "z")) ||
         (lletra === "ñ") || (lletra === "-") ||
-        (lletra === "ç") || (lletra === "·")) {
+     (lletra === "ç") || (lletra === "·")) {
             document.getElementById("boom_cloud").play();
-            document.getElementById("clock_ticking").play();
-            alert(Idioma.Fallat);
+      document.getElementById("clock_ticking").play();
+       alert(Idioma.Fallat);
             dolentes[Vidas_dft - Vidas] = lletra;
-            document.getElementById("Errores").innerHTML =  dolentes; 
+      document.getElementById("Errores").innerHTML =  dolentes; 
             Vidas = Vidas - 1;
             MostraImg();
             if (Vidas <= 0){
                 alert(Idioma.Perdut);
-                document.body.style.backgroundImage = "url('img/3.png')";
-                document.getElementById("cat-fight").play();
-                window.alert(Idioma.Descansi);
-                document.getElementById("valor").disabled = true;
+                         document.body.style.backgroundImage = "url('img/3.png')";
+           document.getElementById("cat-fight").play();
+          window.alert(Idioma.Descansi);
+                        document.getElementById("valor").disabled = true;
                 document.getElementById("boton").disabled = true;
             }
             document.getElementById("vida").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + Vidas;     
     }else{
-        document.getElementById("clock_ticking").play(); 
-        alert(Idioma.Incorrecte);
+       document.getElementById("clock_ticking").play(); 
+            alert(Idioma.Incorrecte);
     }
     }
     
     if(Bones.indexOf("_") === -1){
         alert(Idioma.Guanyat);
-        document.getElementById("cheer").play();
-        document.body.style.backgroundImage = 'url("img/Party.png")'
+            document.getElementById("cheer").play();
+          document.body.style.backgroundImage = 'url("img/Party.png")'
+          document.getElementById("valor").disabled = true;
+           document.getElementById("boton").disabled = true;
     }
 }
     
 function CambiarIdioma(IdIdioma){
     if((IdIdioma !== "ca") && (IdIdioma !== "es")) {
-        document.getElementById("IdiomaExtra").value = IdIdioma;
+          document.getElementById("IdiomaExtra").value = IdIdioma;
     }
     AlaWeb_SQLite(IdIdioma);
-    Idioma = Idiomas.find(Idioma => Idioma.IdIdioma === IdIdioma);
+        Idioma = Idiomas.find(Idioma => Idioma.IdIdioma === IdIdioma);
         alert(Idioma.Titol);
-    document.title = Idioma.Titol;
+   document.title = Idioma.Titol;
     document.getElementById("version").innerHTML = Idioma.Versio;
     document.getElementById("valor").placeholder = Idioma.Input;
-    document.getElementById("boton").innerHTML = Idioma.Comprovar;
-    document.getElementById("palabra").innerHTML = Idioma.Paraula;
-    document.getElementById("pista").innerHTML = Idioma.Pista;
-    document.getElementById("vidas").innerHTML = Idioma.Vides;
+      document.getElementById("boton").innerHTML = Idioma.Comprovar;
+     document.getElementById("palabra").innerHTML = Idioma.Paraula;
+  document.getElementById("pista").innerHTML = Idioma.Pista;
+      document.getElementById("vidas").innerHTML = Idioma.Vides;
     document.getElementById("errores").innerHTML = Idioma.Lletres;
     
     window.alert("Nova paraula aleatòria / Nueva palabra aleatoria / New random word!");
     aleatori = Math.floor(Math.random() * Taula.length);
-    paraula = Taula[aleatori].Paraula;
+paraula = Taula[aleatori].Paraula;
     pista = Taula[aleatori].Pista;
     
-    Bones = [];
+            Bones = [];
  
     for (var i = 0; i < paraula.length; i++) {
         Bones[i] = "_";
@@ -254,15 +256,14 @@ function CambiarIdioma(IdIdioma){
     for (var i = 0; i < Vidas_dft - Vidas; i++) {
         dolentes[i] = "_";
     }
-    document.getElementById("Errores").innerHTML = dolentes;
+document.getElementById("Errores").innerHTML = dolentes;
     
-    Vidas = Vidas_dft; 
+Vidas = Vidas_dft; 
     document.getElementById("vida").innerHTML = 
         "&nbsp;&nbsp;&nbsp;\n\
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + Vidas;
-    MostraImg();
-    
-    IdIdioma_ant = IdIdioma;
+MostraImg();
+IdIdioma_ant = IdIdioma;
 }
     
 window.onkeypress = function(evobject) { 
@@ -271,19 +272,26 @@ window.onkeypress = function(evobject) {
     }
 };
 
+//tiempo
+        const Interval = setInterval(timer, 1000);    
+function timer(){
+         segundos = segundos + 1;
+    document.getElementById("tiempo").innerHTML = segundos;
+}
+
 //empezar
 function Inicio() {
     document.getElementById("ahorcado_0").hidden = true;
-    document.getElementById("ahorcado_1").hidden = true;
-    document.getElementById("ahorcado_2").hidden = true;
-    document.getElementById("ahorcado_3").hidden = true;
-    document.getElementById("ahorcado_4").hidden = true;
+     document.getElementById("ahorcado_1").hidden = true;
+      document.getElementById("ahorcado_2").hidden = true;
+document.getElementById("ahorcado_3").hidden = true;
+document.getElementById("ahorcado_4").hidden = true;
     document.getElementById("ahorcado_5").hidden = true;
-    document.getElementById("ahorcado_6").hidden = true;
-    document.getElementById('inici').play();
+     document.getElementById("ahorcado_6").hidden = true;
+document.getElementById('inici').play();
     document.getElementById("Palabra").innerHTML = Bones;
     document.getElementById("Errores").innerHTML = dolentes;
-    document.getElementById("Audios").hidden = true;
+        document.getElementById("Audios").hidden = true;
     alert("Let's go: a la quinta forca / al quinto pino / to the boondocks?");
 }
 
@@ -291,47 +299,47 @@ function MostraImg() {
     switch (Vidas) {
         case 6:
             document.getElementById("ahorcado_6").hidden = false;
-            break;
+      break;
          case 5:
             document.getElementById("ahorcado_5").hidden = false;
             document.getElementById("ahorcado_6").hidden = true;
             break;
-         case 4:
+      case 4:
             document.getElementById("ahorcado_4").hidden = false;
-            document.getElementById("ahorcado_5").hidden = true;
+       document.getElementById("ahorcado_5").hidden = true;
             break;
-         case 3:
+     case 3:
             document.getElementById("ahorcado_3").hidden = false;
-            document.getElementById("ahorcado_4").hidden = true;
+       document.getElementById("ahorcado_4").hidden = true;
             break;
          case 2:
-            document.getElementById("ahorcado_2").hidden = false;
+           document.getElementById("ahorcado_2").hidden = false;
             document.getElementById("ahorcado_3").hidden = true;
-            break;
-         case 1:
+               break;
+             case 1:
             document.getElementById("ahorcado_1").hidden = false;
-            document.getElementById("ahorcado_2").hidden = true;
+         document.getElementById("ahorcado_2").hidden = true;
             break;
          case 0:
-            document.getElementById("ahorcado_0").hidden = false;
+         document.getElementById("ahorcado_0").hidden = false;
             document.getElementById("ahorcado_1").hidden = true;
             break;
     }
 }
 
 function AlaWeb_SQLite(IdIdioma) {
-    config = {
+config = {
     locateFile: filename => `/dist/${filename}`
     };
-    alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat; \n\
-            SELECT * FROM TblTextosGUI;',
+alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat; \n\
+ SELECT * FROM TblTextosGUI;',
         [], function(idiomas) {SQL_TblTextosGUI(IdIdioma, idiomas.pop());}
         //[], function(idiomas) {Print_Data(Idiomas = idiomas.pop());}
     );
     alasql('ATTACH SQLITE DATABASE penjat("db/penjat.db"); USE penjat; \n\
             SELECT Paraula, Pista \n\
             FROM TblParaules INNER JOIN TblPistes \n\
-            ON TblParaules.IdPista = TblPistes.IdPista \n\
+              ON TblParaules.IdPista = TblPistes.IdPista \n\
             WHERE TblParaules.IdIdioma = "' + IdIdioma + '";',
         //[], function(taula) {Print_Data(Taula = taula.pop());}
         [], function(taula) {SQL_TblParaulesPistes(IdIdioma, taula.pop());}
@@ -341,17 +349,16 @@ function AlaWeb_SQLite(IdIdioma) {
 function SQL_TblTextosGUI(IdIdioma, TblTextosGUI) {    
     Idiomas = TblTextosGUI;
     if (Idiomas.length === 0) {Idiomas = Idiomas_dft;};
-        if (Idiomas.find(Idioma => Idioma.IdIdioma === IdIdioma) === undefined){
-        window.alert("GUI: Idioma no trobat/ Idioma no encontrado/ Language not found!");
-        Idiomas = Idiomas_dft;
+  if (Idiomas.find(Idioma => Idioma.IdIdioma === IdIdioma) === undefined){
+     window.alert("GUI: Idioma no trobat/ Idioma no encontrado/ Language not found!");
+   Idiomas = Idiomas_dft;
     };
 }
-
-function SQL_TblParaulesPistes(IdIdioma, TblParaulesPistes) {         
-    Taula = TblParaulesPistes;
-    if (Taula.length === 0) {
-        window.alert("Idioma sense paraules/ Idioma sin palabras/ Language without words!");
-        Taula = Taula_dft;
+    function SQL_TblParaulesPistes(IdIdioma, TblParaulesPistes) {         
+     Taula = TblParaulesPistes;
+          if (Taula.length === 0) {
+                   window.alert("Idioma sense paraules/ Idioma sin palabras/ Language without words!");
+    Taula = Taula_dft;
         IdIdioma = "ca";
         IdIdioma_ant = IdIdioma;
     } else {
@@ -360,21 +367,14 @@ function SQL_TblParaulesPistes(IdIdioma, TblParaulesPistes) {
     //window.alert(Taula[0].Pista);
 }
 
-//tiempo
-const Interval = setInterval(timer, 1000);    
-function timer(){
-    segundos = segundos + 1;
-    document.getElementById("tiempo").innerHTML = segundos;
-}
-
-// Print data  
+// no tocar
 function Print_Data(res) {        
-    for (var i in res)
+        for (var i in res)
     {
     // console.log("row " + i);
     // document.getElementById("res").innerHTML += "<br>";
         for (var j in res[i])
-        {
+          {
         // console.log(" " + res[i][j]);
         // document.getElementById("res").innerHTML += res[i][j] + ", ";
         window.alert("res[" + i + "][" +j + "] = " + res[i][j]);
