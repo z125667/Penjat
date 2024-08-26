@@ -1,21 +1,24 @@
 body {
-    background:linear-gradient(#aaa 0, #ddd 10px, #fff 55px);
-    border:1px solid black;
-    padding:10px 20px;
-    box-shadow:5px 0px 30px #000;
-    border-radius:8px;
-    margin:0;
-    width:640px;
-    height:480px;
+      background:linear-gradient(#aaa 0, #ddd 10px, #fff 55px);
+      border:1px solid black;
+      padding:10px 20px;
+        border-radius:8px;
+       margin:0;
+      width:640px;
+       height:480px;
 }
 
 #Idioma { position:relative; top:-386px; left:318px; }
-#tiempo { position:relative; top:-185px; left:100px; }
+ #tiempo { position:relative; top:-185px; left:100px; }
+
+
 #Audios { position:relative; top:-480px; left:0px; }
-#imagenes { position:absolute; top:120px; left:320px; }
+ #imagenes { position:absolute; top:120px; left:320px; }
 #ca { position:relative; top:-490px; left:448px; }
+
 #es { position:relative; top:-490px; left:450px; }
 #en { position:relative; top:-490px; left:452px; }
-#IdiomaExtra { position:relative; top:-485px; left:472px; }
+
+ #IdiomaExtra { position:relative; top:-485px; left:472px; }
 #pista { position:absolute; top:182px; left:138px; }
 
